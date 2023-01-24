@@ -6,41 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".RaceActivity">
 
-    <ImageView
-        android:id="@+id/imageRace"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.322"
-        app:srcCompat="@mipmap/mercenario_29"
-        tools:srcCompat="@mipmap/human" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="340dp" />
-
-    <TextView
-        android:id="@+id/textRace"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:text="@string/human_text"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline5"
-        app:layout_constraintEnd_toEndOf="@+id/imageRace"
-        app:layout_constraintStart_toStartOf="@+id/imageClass"
-        app:layout_constraintTop_toBottomOf="@+id/imageRace" />
+        app:layout_constraintGuide_begin="311dp" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -48,89 +21,108 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline5">
 
-        <Button
-            android:id="@+id/buttonHuman"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/human_text"
-            app:layout_constraintBottom_toTopOf="@+id/guideline6"
-            app:layout_constraintEnd_toStartOf="@+id/guideline7"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline3"
-            tools:ignore="DuplicateSpeakableTextCheck" />
-
-        <Button
-            android:id="@+id/buttonEnano"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/dwarf_text"
-            app:layout_constraintBottom_toTopOf="@+id/guideline4"
-            app:layout_constraintEnd_toEndOf="@+id/buttonHuman"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/buttonHuman"
-            app:layout_constraintTop_toTopOf="@+id/guideline6" />
-
-        <Button
-            android:id="@+id/buttonElf"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/elf_text"
-            app:layout_constraintBottom_toTopOf="@+id/guideline4"
-            app:layout_constraintEnd_toEndOf="@+id/buttonGoblin"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/buttonGoblin"
-            app:layout_constraintTop_toTopOf="@+id/guideline6"
-            app:layout_constraintVertical_bias="0.46" />
-
-        <Button
-            android:id="@+id/buttonGoblin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/goblin_text"
-            app:layout_constraintBottom_toTopOf="@+id/guideline6"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline7"
-            app:layout_constraintTop_toTopOf="@+id/guideline3" />
-
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline3"
+            android:id="@+id/guideline8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.15" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.65" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline6"
+            android:id="@+id/guideline9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.4" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline7"
+            android:id="@+id/guideline10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.65" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.5" />
 
         <Button
-            android:id="@+id/buttonNext"
+            android:id="@+id/buttonHuman"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/human_text"
+            app:layout_constraintBottom_toTopOf="@+id/guideline9"
+            app:layout_constraintEnd_toStartOf="@+id/guideline11"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline8" />
+
+        <Button
+            android:id="@+id/buttonGoblin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/goblin_text"
+            app:layout_constraintBottom_toTopOf="@+id/guideline9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline11"
+            app:layout_constraintTop_toTopOf="@+id/guideline8" />
+
+        <Button
+            android:id="@+id/buttonElf"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/elf_text"
+            app:layout_constraintBottom_toTopOf="@+id/guideline10"
+            app:layout_constraintEnd_toEndOf="@+id/buttonHuman"
+            app:layout_constraintStart_toStartOf="@+id/buttonHuman"
+            app:layout_constraintTop_toTopOf="@+id/guideline9" />
+
+        <Button
+            android:id="@+id/buttonDwarf"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/dwarf_text"
+            app:layout_constraintBottom_toTopOf="@+id/guideline10"
+            app:layout_constraintEnd_toEndOf="@+id/buttonGoblin"
+            app:layout_constraintStart_toStartOf="@+id/buttonGoblin"
+            app:layout_constraintTop_toTopOf="@+id/guideline9" />
+
+        <Button
+            android:id="@+id/buttonFinnish"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/buttonNext"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.554"
-            app:layout_constraintStart_toStartOf="@+id/guideline7"
-            app:layout_constraintTop_toTopOf="@+id/guideline4"
-            app:layout_constraintVertical_bias="0.677" />
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="@+id/guideline11"
+            app:layout_constraintTop_toTopOf="@+id/guideline10"
+            app:layout_constraintVertical_bias="0.64" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/imageRace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.274"
+        app:srcCompat="@mipmap/human" />
+
+    <TextView
+        android:id="@+id/textRace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/human_text"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/imageRace"
+        app:layout_constraintStart_toStartOf="@+id/imageRace"
+        app:layout_constraintTop_toBottomOf="@+id/imageRace" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

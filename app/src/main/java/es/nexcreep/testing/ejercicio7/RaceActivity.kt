@@ -21,10 +21,10 @@ class RaceActivity : AppCompatActivity() {
 
         declareButtonClickListener(
             listOf(binding.buttonHuman, binding.buttonElf,
-                binding.buttonGoblin, binding.buttonEnano)
+                binding.buttonGoblin, binding.buttonDwarf)
         )
 
-        binding.buttonNext.setOnClickListener {
+        binding.buttonFinnish.setOnClickListener {
             startActivity(
                 Intent(this, ResumeActivity::class.java)
                     .putExtra("RACE_STRING", selectedRace)
@@ -48,7 +48,7 @@ class RaceActivity : AppCompatActivity() {
                 binding.buttonGoblin -> it.setOnClickListener {
                     setClass(R.mipmap.goblin, R.string.goblin_text)
                 }
-                binding.buttonEnano -> it.setOnClickListener {
+                binding.buttonDwarf -> it.setOnClickListener {
                     setClass(R.mipmap.dwraft, R.string.dwarf_text)
                 }
             }
