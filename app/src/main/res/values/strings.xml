@@ -6,4 +6,8 @@
     <string name="wizard_text">Mago</string>
     <string name="berserker_text">Berserker</string>
     <string name="buttonNext">Siguiente</string>
+    <string name="elf_text">Elfo</string>
+    <string name="human_text">Humano</string>
+    <string name="goblin_text">Goblin</string>
+    <string name="dwarf_text">Enano</string>
 </resources>

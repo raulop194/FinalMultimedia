@@ -9,8 +9,8 @@ import es.nexcreep.testing.ejercicio7.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
 
-    private var selectedClass: Int? = null
-    private var selectedMipmap: Int? = null
+    private var selectedClass: Int = 0
+    private var selectedMipmap: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,23 +20,23 @@ class MainActivity : AppCompatActivity() {
         setClass(R.mipmap.mercenario_29, R.string.berserker_text)
 
         declareButtonClickListener(
-            listOf(binding.buttonBersherker, binding.buttonKnight,
+            listOf(binding.buttonBerserker, binding.buttonKnight,
                 binding.buttonThief, binding.buttonWizard)
         )
 
         binding.buttonNext.setOnClickListener {
             startActivity(
-                Intent(this, ResumeActivity::class.java)
+                Intent(this, RaceActivity::class.java)
                     .putExtra("CLASS_STRING", selectedClass)
                     .putExtra("CLASS_MIPMAP", selectedMipmap)
             )
         }
     }
 
-    fun declareButtonClickListener(buttons: List<Button>) {
+    private fun declareButtonClickListener(buttons: List<Button>) {
         buttons.forEach {
             when (it) {
-                binding.buttonBersherker -> it.setOnClickListener {
+                binding.buttonBerserker -> it.setOnClickListener {
                     setClass(R.mipmap.mercenario_29, R.string.berserker_text)
                 }
                 binding.buttonKnight -> it.setOnClickListener {
@@ -52,12 +52,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun setClass(mipmap: Int, classText: Int) {
+    private fun setClass(mipmap: Int, classText: Int) {
         selectedClass = classText
-        binding.textClass.text = resources.getString(selectedClass?:R.string.app_name)
+        binding.textClass.text = resources.getString(selectedClass)
 
         selectedMipmap = mipmap
-        binding.imageClass.setImageResource(selectedMipmap?:R.mipmap.ic_launcher)
+        binding.imageClass.setImageResource(selectedMipmap)
     }
 
 }
