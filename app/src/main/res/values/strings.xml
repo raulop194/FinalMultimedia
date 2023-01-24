@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Ejercicio7</string>
+    <string name="defaulClass">Bersherker</string>
+    <string name="knight_text">Caballero</string>
+    <string name="thief_text">Ladrón</string>
+    <string name="wizard_text">Mago</string>
+    <string name="berserker_text">Berserker</string>
+    <string name="buttonNext">Siguiente</string>
+</resources>
