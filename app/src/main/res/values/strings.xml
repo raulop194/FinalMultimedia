@@ -10,4 +10,12 @@
     <string name="human_text">Humano</string>
     <string name="goblin_text">Goblin</string>
     <string name="dwarf_text">Enano</string>
+    <string name="name_string">Nombre</string>
+    <string name="level_stenght">Nivel de fuerza</string>
+    <string name="level_guard">Nivel de defensa</string>
+    <string name="weight_backpack">Peso de la mochila</string>
+    <string name="health_points">Puntos de vida</string>
+    <string name="waller_purchase">Dinero en la cartera</string>
+    <string name="restart_button">Volver a empezar</string>
+    <string name="start_button">Comenzar aventura</string>
 </resources>
