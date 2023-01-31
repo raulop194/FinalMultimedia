@@ -6,13 +6,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import androidx.core.widget.addTextChangedListener
 import es.nexcreep.testing.ejercicio7.databinding.ActivityResumeBinding
 
 class ResumeActivity : AppCompatActivity() {
     lateinit var binding: ActivityResumeBinding
-    private lateinit var personaje: Personaje
+    private lateinit var player: Player
 
     private var selectedClass: Int = 0
     private var selectedMipmapClass: Int = 0
@@ -30,7 +29,7 @@ class ResumeActivity : AppCompatActivity() {
         selectedRace = intent.getIntExtra("RACE_STRING", R.string.app_name)
         selectedMipmapRace = intent.getIntExtra("RACE_MIPMAP", R.mipmap.ic_launcher)
 
-        personaje = Personaje()
+        player = Player()
 
         confImageSequence()
         confDescriptionSequence()
@@ -42,12 +41,15 @@ class ResumeActivity : AppCompatActivity() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) { }
 
             override fun afterTextChanged(s: Editable?) {
-                personaje.name = binding.nameField.toString()
+                player.name = binding.nameField.toString()
             }
         } }
 
         binding.buttonStart.setOnClickListener {
-            startActivity(Intent(this, StartActivity::class.java))
+            startActivity(
+                Intent(this, DiceActivity::class.java)
+                    .putExtra("PLAYER_OBJ", player)
+            )
         }
 
         binding.buttonRestart.setOnClickListener {
@@ -58,11 +60,11 @@ class ResumeActivity : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun confDescriptionSequence() {
-        binding.textStrenght.text = "${getString(R.string.level_stenght)}: ${personaje.stenght}"
-        binding.textGuard.text = "${getString(R.string.level_guard)}: ${personaje.guard}"
-        binding.textBackpackWeight.text = "${getString(R.string.weight_backpack)}: ${personaje.backpack}"
-        binding.textHp.text = "${getString(R.string.health_points)}: ${personaje.life}"
-        binding.textWalletPurchase.text = "${getString(R.string.waller_purchase)}: ${personaje.getWalletPurchase()}"
+        binding.textStrenght.text = "${getString(R.string.level_stenght)}: ${player.stenght}"
+        binding.textGuard.text = "${getString(R.string.level_guard)}: ${player.guard}"
+        binding.textBackpackWeight.text = "${getString(R.string.weight_backpack)}: ${player.backpack}"
+        binding.textHp.text = "${getString(R.string.health_points)}: ${player.life}"
+        binding.textWalletPurchase.text = "${getString(R.string.waller_purchase)}: ${player.getWalletPurchase()}"
     }
 
     private fun confImageSequence() {
