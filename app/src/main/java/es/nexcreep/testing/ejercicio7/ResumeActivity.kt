@@ -4,9 +4,8 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import androidx.core.widget.addTextChangedListener
+import android.util.Log
+import com.google.gson.Gson
 import es.nexcreep.testing.ejercicio7.databinding.ActivityResumeBinding
 
 class ResumeActivity : AppCompatActivity() {
@@ -34,21 +33,17 @@ class ResumeActivity : AppCompatActivity() {
         confImageSequence()
         confDescriptionSequence()
 
+
         // Listeners
-        binding.nameField.addTextChangedListener { object: TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) { }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) { }
-
-            override fun afterTextChanged(s: Editable?) {
-                player.name = binding.nameField.toString()
-            }
-        } }
 
         binding.buttonStart.setOnClickListener {
+            player.name = binding.nameField.text.toString()
+            player.playerRace = getString(selectedRace)
+            player.playerClass = getString(selectedClass)
+            Log.v("PLAYER_NAME", "Resume: ${player.playerRace}")
             startActivity(
                 Intent(this, DiceActivity::class.java)
-                    .putExtra("PLAYER_OBJ", player)
+                    .putExtra("PLAYER_OBJ", Gson().toJson(player))
             )
         }
 
@@ -62,8 +57,8 @@ class ResumeActivity : AppCompatActivity() {
     private fun confDescriptionSequence() {
         binding.textStrenght.text = "${getString(R.string.level_stenght)}: ${player.stenght}"
         binding.textGuard.text = "${getString(R.string.level_guard)}: ${player.guard}"
-        binding.textBackpackWeight.text = "${getString(R.string.weight_backpack)}: ${player.backpack}"
-        binding.textHp.text = "${getString(R.string.health_points)}: ${player.life}"
+        binding.textBackpackWeight.text = "${getString(R.string.weight_backpack)}: ${player.backpack.weight}"
+        binding.textHp.text = "${getString(R.string.health_points)}: ${player.life}/${player.maxLife}"
         binding.textWalletPurchase.text = "${getString(R.string.waller_purchase)}: ${player.getWalletPurchase()}"
     }
 

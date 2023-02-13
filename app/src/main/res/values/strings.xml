@@ -27,4 +27,5 @@
     <string name="object_action_b">Continuar</string>
     <string name="trader_action_a">Comerciar</string>
     <string name="trader_action_b">Continuar</string>
+    <string name="player_resume_dice">Resumen de partida</string>
 </resources>

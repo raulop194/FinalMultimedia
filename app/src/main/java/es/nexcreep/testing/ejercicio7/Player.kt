@@ -1,28 +1,21 @@
 package es.nexcreep.testing.ejercicio7
 
-import android.os.Parcel
-import android.os.Parcelable
 import kotlin.random.Random
 
-class Player() : Parcelable {
+class Player{
     var name: String = ""
+    var playerRace: String = ""
+    var playerClass: String = ""
+
     var stenght: Int = Random.nextInt(10, 15)
     var guard: Int = Random.nextInt(1, 5)
-    var backpack: Int = 100
     var life: Int = 200
-    var wallet: HashMap<Int, Int> = mapOf(
+    var maxLife: Int = 200
+    var backpack: Backpack = Backpack(100)
+    var wallet: HashMap<Int, Int> = hashMapOf(
         1 to 0, 2 to 0, 5 to 0,
         10 to 0, 20 to 0, 50 to 0,
-        100 to 0) as HashMap<Int, Int>
-
-    constructor(parcel: Parcel) : this() {
-        name = parcel.readString().toString()
-        stenght = parcel.readInt()
-        guard = parcel.readInt()
-        backpack = parcel.readInt()
-        life = parcel.readInt()
-    }
-
+        100 to 0)
 
     fun getWalletPurchase(): Int {
         var purchase = 0
@@ -30,25 +23,4 @@ class Player() : Parcelable {
         return purchase
     }
 
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(name)
-        parcel.writeInt(stenght)
-        parcel.writeInt(guard)
-        parcel.writeInt(backpack)
-        parcel.writeInt(life)
-    }
-
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    companion object CREATOR : Parcelable.Creator<Player> {
-        override fun createFromParcel(parcel: Parcel): Player {
-            return Player(parcel)
-        }
-
-        override fun newArray(size: Int): Array<Player?> {
-            return arrayOfNulls(size)
-        }
-    }
 }
