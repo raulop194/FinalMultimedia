@@ -5,14 +5,16 @@ import androidx.annotation.RequiresApi
 import kotlin.random.Random
 
 class Player{
-    var name: String = ""
+    var name: String = "Federico"
     var playerRace: String = ""
     var playerClass: String = ""
 
-    var stenght: Int = Random.nextInt(10, 15)
-    var guard: Int = Random.nextInt(1, 5)
+    val stenght: Int = Random.nextInt(10, 15)
+    val guard: Int = Random.nextInt(1, 5)
+    val maxLife: Int = 200
+
     var life: Int = 200
-    var maxLife: Int = 200
+
     var backpack: Backpack = Backpack(100)
     var wallet: HashMap<Int, Int> = hashMapOf(
         1 to 0, 2 to 0, 5 to 0,
@@ -48,4 +50,14 @@ class Player{
         addCoins(coinDifference)
     }
 
+    /**
+     * Attack's an enemy
+     *
+     * @param enemy Enemy to attack
+     * @return Damage caused to enemy
+     * */
+    fun attack(enemy: Enemy): Int {
+        if (enemy.life - stenght >= 0) enemy.life -= stenght else enemy.life = 0
+        return stenght
+    }
 }

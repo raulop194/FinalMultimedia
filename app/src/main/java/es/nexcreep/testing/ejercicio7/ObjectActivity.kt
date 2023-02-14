@@ -19,7 +19,7 @@ class ObjectActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         player = Gson().fromJson(intent.getStringExtra("PLAYER_OBJ")?:"{}", Player::class.java)
-        itemProperties = Item()
+        itemProperties = Item(tag = "Flor Verde")
 
         binding.itemName.text = itemProperties.tag
         binding.priceText.text = "Valor: ${itemProperties.price}"

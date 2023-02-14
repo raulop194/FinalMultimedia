@@ -29,7 +29,7 @@ class DiceActivity : AppCompatActivity() {
             val percentage = getPercentage()
             Log.v("DICE", "$percentage")
             startActivity(
-                Intent(this, getNextActivityLayout(getPercentage()))
+                Intent(this, EnemyActivity::class.java)
                     .putExtra("PLAYER_OBJ", Gson().toJson(player))
             )
         }

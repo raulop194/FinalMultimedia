@@ -79,7 +79,7 @@ class TraderActivity : AppCompatActivity() {
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) { }
 
-        }
+            }
         )
 
         builder.setPositiveButton("Vender") { _, _ ->
@@ -112,7 +112,7 @@ class TraderActivity : AppCompatActivity() {
         val builder: AlertDialog.Builder = AlertDialog.Builder(this@TraderActivity)
         val view = layoutInflater.inflate(R.layout.dialog_traider, null)
         val seekBar = view.findViewById<SeekBar>(R.id.seekBar3)
-        val itemOnSell = Item(tag = "Titanita Centellante", weight = 2, price = 1)
+        val itemOnSell = Item(tag = "Titanita Centellante", weight = 2, price = 125)
 
         builder.setView(view)
         builder.setTitle("Comprar")
