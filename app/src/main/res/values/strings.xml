@@ -28,4 +28,7 @@
     <string name="trader_action_a">Comerciar</string>
     <string name="trader_action_b">Continuar</string>
     <string name="player_resume_dice">Resumen de partida</string>
+    <string name="trade_buy">Comprar</string>
+    <string name="trade_sell">vender</string>
+    <string name="trade_cancel">Cancelar</string>
 </resources>

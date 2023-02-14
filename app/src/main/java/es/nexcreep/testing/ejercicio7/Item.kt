@@ -8,6 +8,6 @@ class Item(
     val maxHealthPoints: Int = 20
 ) {
     override fun toString(): String {
-        return "\"$tag\", Peso $weight, Valor: $price, HP $healthPoints/$maxHealthPoints"
+        return "[\"$tag\", Peso $weight, Valor: $price, HP $healthPoints/$maxHealthPoints]"
     }
 }
