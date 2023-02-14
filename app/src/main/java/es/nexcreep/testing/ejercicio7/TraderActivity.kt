@@ -120,7 +120,7 @@ class TraderActivity : AppCompatActivity() {
                 "\n${itemOnSell.tag} \n\t-> Precio = ${itemOnSell.price}\n\t-> Peso = ${itemOnSell.weight}")
 
         val purchaseLimit = if(player.getWalletPurchase() <= 0) 0 else player.getWalletPurchase()/ itemOnSell.price
-        val weightLimit = (player.backpack.maxWeight - player.backpack.weight) / itemOnSell.weight
+        val weightLimit = (player.backpack.maxWeight - (player.backpack.maxWeight - player.backpack.weight)) / itemOnSell.weight
         seekBar.max = if (purchaseLimit < weightLimit) purchaseLimit else weightLimit
 
         view.findViewById<TextView>(R.id.value).text = "Cantidad a comprar: ${seekBar.progress}"

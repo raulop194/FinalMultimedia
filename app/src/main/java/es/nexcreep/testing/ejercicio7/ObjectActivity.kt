@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.google.gson.Gson
 import es.nexcreep.testing.ejercicio7.databinding.ActivityObjectBinding
 
@@ -26,8 +27,16 @@ class ObjectActivity : AppCompatActivity() {
         binding.healthPointsText.text = "HP ${itemProperties.healthPoints}/${itemProperties.maxHealthPoints}"
 
         binding.objectActionA.setOnClickListener {
-            player.backpack.addItem(itemProperties)
-            returnToDiceActivity()
+            if (player.backpack.addItem(itemProperties))
+                returnToDiceActivity()
+            else {
+                val toast = Toast.makeText(
+                    this,
+                    "El objeto no cabe en la mochila.",
+                    Toast.LENGTH_SHORT
+                )
+                toast.show()
+            }
         }
         binding.objectActionB.setOnClickListener {
             returnToDiceActivity()
