@@ -86,8 +86,9 @@ class TraderActivity : AppCompatActivity() {
             var totalPrice = 0
             val itemCount = seekBar.progress
             repeat(itemCount) {
-                val removedItem: Item = player.backpack.removeItemAt(0)
-                totalPrice += removedItem.price
+                val removedItem: Item? = player.backpack.removeItemAt(0)
+                if (removedItem != null)
+                    totalPrice += removedItem.price
                 Log.d("Dialog", "${player.backpack.items}")
             }
             player.addCoins(totalPrice)

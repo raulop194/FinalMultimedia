@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import com.google.gson.Gson
@@ -36,13 +37,8 @@ class EnemyActivity : AppCompatActivity() {
             EnemyType.NORMAL -> binding.enemyImage.setImageResource(R.mipmap.hombre_cuervo)
         }
 
-        binding.hpEnemy.progress = enemy.maxLife
-        binding.hpEnemy.max = enemy.maxLife
-
-        binding.hpPlayer.progress = player.maxLife
-        binding.hpPlayer.max = player.maxLife
-
         binding.turnMsg.text = "Ronda $round"
+        updateMobsLife()
 
         playerActions = listOf(binding.actionA, binding.actionB, binding.actionC)
 
@@ -68,7 +64,6 @@ class EnemyActivity : AppCompatActivity() {
     private fun playerAttack() {
         val damage = player.attack(enemy)
         binding.damageTo.text = "Has hecho $damage al enemigo."
-        binding.hpEnemy.progress -= damage
     }
 
     @SuppressLint("SetTextI18n")
@@ -82,13 +77,12 @@ class EnemyActivity : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun playerHeal() {
-        if (player.life < player.maxLife && player.backpack.weight <= player.backpack.maxWeight) {
+        if (player.life < player.maxLife && player.backpack.items.isNotEmpty()) {
             val inc = if (player.maxLife - player.life < 20) player.maxLife - player.life else 20
             player.life += inc
             player.backpack.removeItemAt(0)
 
             binding.damageTo.text = "Has recobrado $inc puntos de salud."
-            binding.hpPlayer.progress += inc
         } else {
             binding.damageTo.text = "No tienes objetos o tienes la vida al maximo para curarte."
         }
@@ -113,7 +107,6 @@ class EnemyActivity : AppCompatActivity() {
     private fun enemyMove() {
         val damage = enemy.attack(player)
         binding.damageOf.text = "El enemigo te ha hecho $damage de daño."
-        binding.hpPlayer.progress -= damage
 
         checkBattle()
         round +=1
@@ -122,8 +115,11 @@ class EnemyActivity : AppCompatActivity() {
     }
 
     private fun checkBattle() {
+        Log.d("BATTLE_STATE", "Player: ${player.life} | Enemy: ${enemy.life}")
+        updateMobsLife()
+
         if (player.life <= 0)
-            nextActivity(DiceActivity::class.java)
+            nextActivity(DieActivity::class.java)
 
         if (enemy.life <= 0) {
             Toast.makeText(
@@ -143,6 +139,12 @@ class EnemyActivity : AppCompatActivity() {
 
             nextActivity(DiceActivity::class.java)
         }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun updateMobsLife() {
+        binding.hpEnemy.text = "HP ${enemy.life}/${enemy.maxLife}"
+        binding.hpPlayer.text = "HP ${player.life}/${player.maxLife}"
     }
 
     private fun nextActivity(activity: Class<*>) {

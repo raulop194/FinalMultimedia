@@ -16,7 +16,8 @@ class Backpack (var weight: Int = 100, val maxWeight: Int = 100){
         return false
     }
 
-    fun removeItemAt(index: Int): Item {
+    fun removeItemAt(index: Int): Item? {
+        if (items.isEmpty()) return null
         val item = items.removeAt(index)
         weight += item.weight
         return item
