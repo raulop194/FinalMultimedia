@@ -29,7 +29,7 @@ class DiceActivity : AppCompatActivity() {
             val percentage = getPercentage()
             Log.v("DICE", "$percentage")
             startActivity(
-                Intent(this, EnemyActivity::class.java)
+                Intent(this, CityActivity::class.java)
                     .putExtra("PLAYER_OBJ", Gson().toJson(player))
             )
         }
@@ -42,7 +42,9 @@ class DiceActivity : AppCompatActivity() {
 
     private fun getNextActivityLayout(percentage: Float): Class<*> {
         return when {
+            percentage.roundToInt() <= 25 -> CityActivity::class.java
             percentage.roundToInt() <= 50 -> TraderActivity::class.java
+            percentage.roundToInt() <= 75 -> EnemyActivity::class.java
             percentage.roundToInt() <= 100 -> ObjectActivity::class.java
             else -> DiceActivity::class.java
         }

@@ -12,6 +12,7 @@ class ObjectActivity : AppCompatActivity() {
     private lateinit var binding: ActivityObjectBinding
     private lateinit var player: Player
     private lateinit var itemProperties: Item
+    private lateinit var nextActivity: Class<*>
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,6 +22,9 @@ class ObjectActivity : AppCompatActivity() {
         player = Gson().fromJson(intent.getStringExtra("PLAYER_OBJ")?:"{}", Player::class.java)
         itemProperties = Item(tag = "Flor Verde")
 
+        val origin = intent.getBooleanExtra("ORIGIN_CITY", false)
+        nextActivity = if (origin) CityActivity::class.java else DiceActivity::class.java
+
         binding.itemName.text = itemProperties.tag
         binding.priceText.text = "Valor: ${itemProperties.price}"
         binding.weightText.text = "Peso: ${itemProperties.weight}"
@@ -28,7 +32,7 @@ class ObjectActivity : AppCompatActivity() {
 
         binding.objectActionA.setOnClickListener {
             if (player.backpack.addItem(itemProperties))
-                returnToDiceActivity()
+                returnToPrevActivity()
             else {
                 val toast = Toast.makeText(
                     this,
@@ -39,12 +43,12 @@ class ObjectActivity : AppCompatActivity() {
             }
         }
         binding.objectActionB.setOnClickListener {
-            returnToDiceActivity()
+            returnToPrevActivity()
         }
     }
 
-    private fun returnToDiceActivity() {
-        startActivity(Intent(this, DiceActivity::class.java)
+    private fun returnToPrevActivity() {
+        startActivity(Intent(this, nextActivity)
             .putExtra("PLAYER_OBJ", Gson().toJson(player)))
     }
 }

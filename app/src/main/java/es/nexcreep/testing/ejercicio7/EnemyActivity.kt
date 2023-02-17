@@ -16,6 +16,7 @@ class EnemyActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEnemyBinding
     private lateinit var player: Player
     private lateinit var enemy: Enemy
+    private lateinit var nextActivity: Class<*>
 
     private var round = 1
 
@@ -29,6 +30,9 @@ class EnemyActivity : AppCompatActivity() {
 
         player = Gson().fromJson(intent.getStringExtra("PLAYER_OBJ")?:"{}", Player::class.java)
         enemy = spawnEnemy(getPercentage())
+
+        val origin = intent.getBooleanExtra("ORIGIN_CITY", false)
+        nextActivity = if (origin) CityActivity::class.java else DiceActivity::class.java
 
         binding.enemysName.text = enemy.name
 
@@ -69,7 +73,7 @@ class EnemyActivity : AppCompatActivity() {
     @SuppressLint("SetTextI18n")
     private fun playerScape() {
         when (Random.nextInt(1, 7)) {
-            in 5..6 -> nextActivity(DiceActivity::class.java)
+            in 5..6 -> nextActivity()
             in 1..4 -> binding.damageTo.text = "No has podido escapar..."
         }
 
@@ -98,9 +102,9 @@ class EnemyActivity : AppCompatActivity() {
         }
 
         playerActions.forEach { it.isEnabled = false }
-        checkBattle()
 
-        enemyMove()
+        if (!checkBattle())
+            enemyMove()
     }
 
     @SuppressLint("SetTextI18n")
@@ -114,12 +118,14 @@ class EnemyActivity : AppCompatActivity() {
         playerActions.forEach { it.isEnabled = true }
     }
 
-    private fun checkBattle() {
+    private fun checkBattle(): Boolean {
         Log.d("BATTLE_STATE", "Player: ${player.life} | Enemy: ${enemy.life}")
         updateMobsLife()
 
-        if (player.life <= 0)
+        if (player.life <= 0) {
             nextActivity(DieActivity::class.java)
+            return true
+        }
 
         if (enemy.life <= 0) {
             Toast.makeText(
@@ -127,6 +133,8 @@ class EnemyActivity : AppCompatActivity() {
                 "Has derrotado al enemigo, ¡enhorabuena!",
                 Toast.LENGTH_LONG
             ).show()
+
+            player.enemiesDefeated += 1
 
             listOf(
                 Item("Estus (Curación)", 1, 1),
@@ -137,8 +145,11 @@ class EnemyActivity : AppCompatActivity() {
             }
             player.addCoins(100)
 
-            nextActivity(DiceActivity::class.java)
+            nextActivity()
+            return true
         }
+
+        return false
     }
 
     @SuppressLint("SetTextI18n")
@@ -152,5 +163,13 @@ class EnemyActivity : AppCompatActivity() {
             Intent(this, activity)
                 .putExtra("PLAYER_OBJ", Gson().toJson(player))
         )
+        finish()
+    }
+    private fun nextActivity() {
+        startActivity(
+            Intent(this, nextActivity)
+                .putExtra("PLAYER_OBJ", Gson().toJson(player))
+        )
+        finish()
     }
 }

@@ -16,6 +16,7 @@ import es.nexcreep.testing.ejercicio7.databinding.ActivityTraderBinding
 class TraderActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTraderBinding
     private lateinit var player: Player
+    private lateinit var nextActivity: Class<*>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,6 +24,9 @@ class TraderActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         player = Gson().fromJson(intent.getStringExtra("PLAYER_OBJ")?:"{}", Player::class.java)
+
+        val origin = intent.getBooleanExtra("ORIGIN_CITY", false)
+        nextActivity = if (origin) CityActivity::class.java else DiceActivity::class.java
 
         val groupA = listOf(binding.traderActionA, binding.traderActionB)
         val groupB = listOf(binding.tradeBuy, binding.tradeSell, binding.tradeCancel)
@@ -34,7 +38,7 @@ class TraderActivity : AppCompatActivity() {
         }
         binding.traderActionB.setOnClickListener {
             startActivity(
-                Intent(this, DiceActivity::class.java)
+                Intent(this, nextActivity)
                     .putExtra("PLAYER_OBJ", Gson().toJson(player))
             )
         }

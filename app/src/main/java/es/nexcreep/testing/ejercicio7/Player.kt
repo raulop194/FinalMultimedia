@@ -15,6 +15,8 @@ class Player{
 
     var life: Int = 200
 
+    var enemiesDefeated = 0
+
     var backpack: Backpack = Backpack(100)
     var wallet: HashMap<Int, Int> = hashMapOf(
         1 to 0, 2 to 0, 5 to 0,
