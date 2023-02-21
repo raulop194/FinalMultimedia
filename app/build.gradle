@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace 'es.nexcreep.testing.ejercicio7'
+    namespace 'es.nexcreep.testing.youradventure'
     compileSdk 33
 
     viewBinding{
@@ -12,7 +12,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "es.nexcreep.testing.ejercicio7"
+        applicationId "es.nexcreep.testing.youradventure"
         minSdk 25
         targetSdk 33
         versionCode 1

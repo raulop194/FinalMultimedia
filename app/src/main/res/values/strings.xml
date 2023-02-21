@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Ejercicio7</string>
+    <string name="app_name">Your Adventure</string>
     <string name="defaulClass">Bersherker</string>
     <string name="knight_text">Caballero</string>
     <string name="thief_text">Ladrón</string>
