@@ -12,7 +12,7 @@ import es.nexcreep.testing.youradventure.model.Player
 
 class ResumeActivity : AppCompatActivity() {
     lateinit var binding: ActivityResumeBinding
-    lateinit var dbHelper: DatabaseHelper
+    lateinit var profilesHelper: DatabaseHelper
 
     private lateinit var player: Player
 
@@ -27,7 +27,7 @@ class ResumeActivity : AppCompatActivity() {
         binding = ActivityResumeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        dbHelper = DatabaseHelper(this)
+        profilesHelper = DatabaseHelper(applicationContext)
 
         selectedClass = intent.getIntExtra("CLASS_STRING", R.string.app_name)
         selectedMipmapClass = intent.getIntExtra("CLASS_MIPMAP", R.mipmap.ic_launcher)
@@ -43,14 +43,17 @@ class ResumeActivity : AppCompatActivity() {
         // Listeners
 
         binding.buttonStart.setOnClickListener {
-            player.name = binding.nameField.text.toString()
+            val name = binding.nameField.text.toString()
+            player.name = if (name.isEmpty() || name.isBlank()) "Sin nombre" else name
             player.playerRace = getString(selectedRace)
             player.playerClass = getString(selectedClass)
 
-            dbHelper.addPlayerProfile(player, "password")
-            Log.d("DATA_DB", dbHelper.getAllProfiles().toString())
+            val password = binding.passwordField.text.toString()
+            if (password.isEmpty() || password.isBlank())
+                profilesHelper.addPlayerProfile(player)
+            else
+                profilesHelper.addPlayerProfile(player, password)
 
-            Log.v("PLAYER_NAME", "Resume: ${player.playerRace}")
             startActivity(
                 Intent(this, DiceActivity::class.java)
                     .putExtra("PLAYER_OBJ", Gson().toJson(player))

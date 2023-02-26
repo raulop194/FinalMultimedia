@@ -4,17 +4,18 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import es.nexcreep.testing.youradventure.databinding.ActivityClassBinding
 import es.nexcreep.testing.youradventure.databinding.ActivityMainBinding
 
 class ClassActivity : AppCompatActivity() {
-    lateinit var binding: ActivityMainBinding
+    lateinit var binding: ActivityClassBinding
 
     private var selectedClass: Int = 0
     private var selectedMipmap: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityClassBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setClass(R.mipmap.mercenario_29, R.string.berserker_text)

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.google.gson.Gson
+import es.nexcreep.testing.youradventure.database.DatabaseHelper
 import es.nexcreep.testing.youradventure.databinding.ActivityDiceBinding
 import es.nexcreep.testing.youradventure.model.Player
 import kotlin.math.roundToInt
@@ -14,6 +15,7 @@ import kotlin.random.Random
 class DiceActivity : AppCompatActivity() {
     lateinit var binding: ActivityDiceBinding
     lateinit var player: Player
+    lateinit var database: DatabaseHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,6 +25,9 @@ class DiceActivity : AppCompatActivity() {
         player = Gson().fromJson(intent.getStringExtra("PLAYER_OBJ")?:"{}", Player::class.java)
         Log.v("PLAYER_OBJ", "Dice: ${player.name}")
         Log.v("PLAYER_OBJ", "Dice: ${player.backpack}")
+
+        database = DatabaseHelper(applicationContext)
+        database.updatePlayerData(player)
 
         genResume()
 

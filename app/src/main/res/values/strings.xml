@@ -32,4 +32,6 @@
     <string name="trade_sell">vender</string>
     <string name="trade_cancel">Cancelar</string>
     <string name="enemy_heal">Curar</string>
+    <string name="game_stats">Clase: {0}\nRaza: {1}\nFuerza: {2}\nDefensa: {3}</string>
+    <string name="dialog_password_subtitle">Este perfil esta protegido por una constraseña. Por favor para continuar introducela.</string>
 </resources>

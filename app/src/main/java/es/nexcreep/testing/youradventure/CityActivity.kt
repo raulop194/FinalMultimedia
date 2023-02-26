@@ -36,6 +36,7 @@ class CityActivity : AppCompatActivity() {
         }
         binding.cityActionB.setOnClickListener {
             if (player.enemiesDefeated >= maxEnemyCount) {
+                player.enemiesDefeated = 0
                 startActivity(
                     Intent(this, DiceActivity::class.java)
                         .putExtra("PLAYER_OBJ", Gson().toJson(player))
